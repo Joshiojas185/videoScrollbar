@@ -8,27 +8,20 @@ const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
-const winston = require("winston");
 
-// 1. Logger Setup
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.simple()
-  ),
-  transports: [
-    new winston.transports.File({ filename: "logs/app.log" }),
-    new winston.transports.Console(),
-  ],
-});
+
+const dbHost = process.env.DB_HOST;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+const dbName = process.env.DB_NAME;
 
 // 2. Database Connection
 const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "video_app2",
+  host: dbHost || "localhost",
+  user: dbUser || "root",
+  password: dbPassword || "",
+  database: dbName || "video_app2",
+  port: 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
