@@ -1,0 +1,14 @@
+// Table Structure
+CREATE DATABASE video_app2;
+USE video_app2;
+
+CREATE TABLE jobs (
+  id VARCHAR(255) PRIMARY KEY,
+  status ENUM('pending', 'processing', 'completed', 'failed') DEFAULT 'pending',
+  video_path VARCHAR(500),
+  sprite_path TEXT,
+  vtt_path VARCHAR(500),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  error_message TEXT
+);
