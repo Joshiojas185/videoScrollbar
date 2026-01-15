@@ -28,7 +28,7 @@ const db = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "video_app2",
+  database: "video_app",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
